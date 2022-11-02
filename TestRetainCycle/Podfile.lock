@@ -1,0 +1,16 @@
+PODS:
+  - LifetimeTracker (1.8.0)
+
+DEPENDENCIES:
+  - LifetimeTracker (= 1.8.0)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - LifetimeTracker
+
+SPEC CHECKSUMS:
+  LifetimeTracker: a7a0fcf35bbf933f83b1c1020e267996d17cdcea
+
+PODFILE CHECKSUM: 229bc2eb91c1a329fa8366433b37480a5b1cc8c7
+
+COCOAPODS: 1.11.3
