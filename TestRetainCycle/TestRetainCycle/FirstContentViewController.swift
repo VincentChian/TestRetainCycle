@@ -43,12 +43,18 @@ class FirstContentViewController: DefaultLifetimeTrackableVC {
 //            self?.myStruct.showInfo()
 //        }
 //        myClass.someClosure()
-        // 註：不分 class 或是 struct，重點是類別「自己 capture 自己」
+        // 註：重點在兩個屬性成員都來自同一個實體(self)，且 capture 住彼此
         
         
-        // ＊改成 function 似乎可以正常釋放
-//        myClass.someFunction { [weak self] in
-//            self?.myStruct.showInfo()
+        // ＊改成 function 可以正常釋放 (但有隱憂，例如非同步、延遲等)
+        // 一般版
+//        myClass.someFunction {
+//            self.myStruct.showInfo()
+//        }
+        
+        // 延遲版
+//        myClass.someDelayFunction {
+//            self.myStruct.showInfo()
 //        }
         
         // 方法2. 同上，讓「實體本身」成為參數，效果與 function 傳入參數相同
@@ -57,13 +63,6 @@ class FirstContentViewController: DefaultLifetimeTrackableVC {
 //        }
 //
 //        myClass.trickySomeClosure(myClass)
-        
-        // 方法3. 使用 static closure (與使用 static 單例效果相同)
-//        MyClass.staticClosure = {
-//            self.myClass.showInfo()
-//        }
-//
-//        MyClass.staticClosure()
         
         
         // MARK: 案例2. 「區域變數 capture 住自己」或「區域變數互相 capture 」，儘管 FirstContentViewController 釋放了，但區域變數卻產生 Retain Cycle (Debug memory graph 有紫色驚嘆號)

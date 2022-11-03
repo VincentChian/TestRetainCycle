@@ -14,9 +14,7 @@ class MyClass {
     var info: String
     
     var someClosure: () -> Void = {}
-    
-    static var staticClosure: () -> Void = {}
-    
+        
     var trickySomeClosure: (MyClass) -> Void = {_ in }
     
     init(info: String = "") {
@@ -31,8 +29,14 @@ class MyClass {
         print("MyClass showInfo: \(info)")
     }
     
-    func someFunction(_ closure: @escaping () -> Void ) {
+    func someFunction(_ closure: () -> Void ) {
         closure()
+    }
+    
+    func someDelayFunction(closure: @escaping () -> Void ) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            closure()
+        }
     }
 }
 
@@ -64,7 +68,7 @@ struct MyStruct {
         print("MyStruct showInfo: \(info)")
     }
     
-    func someFunction(_ closure:  @escaping () -> Void ) {
+    func someFunction(_ closure: () -> Void ) {
         closure()
     }
 
